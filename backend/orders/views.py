@@ -5,7 +5,7 @@ from django.conf import settings
 from django.http import HttpResponse
 # from reportlab.lib.pagesizes import letter
 # from reportlab.pdfgen import canvas
-from xhtml2pdf import pisa
+# from xhtml2pdf import pisa
 from django.template.loader import get_template
 
 from orders.models import PlantationOrderModel
@@ -83,9 +83,9 @@ def download_invoice_view(request):
 
     html = render(request, 'invoice.html').content
 
-    pisa_status = pisa.CreatePDF(html, dest=response)
+    # pisa_status = pisa.CreatePDF(html, dest=response)
 
-    if pisa_status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    # if pisa_status.err:
+    #     return HttpResponse('We had some errors <pre>' + html + '</pre>')
 
     return response
