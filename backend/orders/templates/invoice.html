@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            background-color: #EDF2F9;
+            color: #5E6E82;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #EDF2F9; 
+            
+            width: 800px; 
+            border: 1px solid black; 
+            margin: 2rem auto; 
+            padding: 1rem; 
+            background-color: #fff;
+            padding-bottom: 3rem;
+        }
+
+        th, tr {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        td {
+            padding: .5rem 1rem;
+            text-align: left;
+        }
+
+        @media screen and (min-width: 992px) {
+            .container {
+                max-width: 70vw; 
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #EDF2F9;">
+    {% comment %} color-primary: #EDF2F9;
+    --color-secondary: #5E6E82;
+    --color-tertiary: #2C7BE5; {% endcomment %}
+    <div style="max-width: 70vw; width: 100%; margin: 1rem auto; padding: 1rem 2rem; display: flex; align-content: center; justify-content: space-around;">
+        <a href="{% url 'main:main' %}">Go home</a>
+        <a href="{% url 'download-invoice' %}">Download invoice</a>
+    </div>
+    <div class="container" >
+        <div style="text-align: right; padding: 1rem;">
+            <h3>Plantation</h3>
+            <p>12 ribon raod, Balitoville</p>
+            <p>Tel: (031) 251 2154</p>
+        </div>
+
+        <h1 style="font-size: 52px; color: #000;">Invoice</h1>
+        <p>Invoice number: 0000215</p>
+
+        <br>
+        <div style="display: flex; max-width: 256px; justify-content: space-between;">
+            <p>Bill to:</p>
+
+            <div>
+                <p>25 Spance Ave,</p>
+                <p>Reservoir Hills,</p>
+                <p>Durban 4001</p>
+            </div>
+
+        </div>
+
+        {% comment %} <br><br><br>
+        <hr> {% endcomment %}
+        <br><br><br>
+        <table style="width: 100%; border-collapse: collapse; padding-bottom: .5rem;">
+            <tr style="border-bottom: 1px solid black;">
+                <th>Item</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Amount</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>Iphone</td>
+                <td>20</td>
+                <td>253.5</td>
+                <td>232565.55</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Iphone</td>
+                <td>20</td>
+                <td>253.5</td>
+                <td>232565.55</td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <th>Total</th>
+                <th>40</th>
+                <th>253.5</th>
+                <th>232565.55</th>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>

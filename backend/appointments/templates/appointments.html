@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "messages/warning.html" %}
+<div class="plantation-events">
+    <h2 class="plantation-event_heading">Pending Appointments</h2>
+
+    <div class="plantation-event_wrapper">
+
+        {% if not appointments %}
+           <p> Your appointments will appear here</p>
+        {% endif %}
+
+
+        {% for appointment in appointments %}
+            <a href="{% url "detail-appointment" appointment.pk %}" class="plantation-card_link">
+                <div class="plantation-events_card">
+                    <div class="plantation-image">
+                        <div class="plantation-calender">
+                            <div class="plantation-date">25</div>
+                            <div class="plantation-month">Mar</div>
+                        </div>
+
+                        <span>
+                            <p> pending...</p>
+                        </span>
+                    </div>
+                    <div class="plantation-info">
+                        <h3 class="plantation-event_title">{{ appointment.title | title }}</h3>
+                        <p class="plantation-event_host">By: <span style="text-decoration: underline;">Prof J Mugho</span></p>
+                        <p class="plantation-event_time">Time: 11:00 AM</p>
+                        <p class="plantation-event_duration">Duration: 35mins</p>
+                        <p class="plantation-event_location">
+                            Place: {{ appointment.location }}
+                        </p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

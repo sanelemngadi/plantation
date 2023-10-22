@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>confirm</h2>
+<a href="#">go back</a>
+
+<div class="plantation-product_card">
+    <a href="#">
+        <div class="plantation-product_image">image</div>
+    </a>
+    <div class="plantation-product_info">
+        <h2 class="plantation-product_name">
+            {{ rental.product.name }}
+        </h2>
+
+        <p class="plantation-product-description">
+            {{ rental.product.description }}
+        </p>
+
+        <p>Price: {{ rental.product.price }}</p>
+       
+    </div>
+</div>
+
+    <div class="plantation-rental_summary">
+        <h2>Summary:</h2>
+        <p>
+            You are about to lend our product: "{{ rental.product.name }}" for the following reason: "{{ rental.reason }}"
+        </p>
+    </div>
+
+    <div class="plantation-rental_details">
+        <div class="plantation-customerdetail">
+            <h3>Customer detail</h3>
+            <p>Name: {{ rental.user.username }}</p>
+            <p>Email: {{ rental.user.email }}</p>
+        </div>
+        <div class="plantation-otherdetail">
+            <h3>Other detail</h3>
+
+            <p>Item: {{ rental.product.name }}</p>
+            <p>Cost (a day): {{ rental.product.price }}</p>
+            <p>Total days: 5</p>
+        </div>
+    </div>
+
+{% endblock %}

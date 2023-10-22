@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Enter your key</h2>
+    <br>
+    <br>
+    <form action="." method="post">
+        {% csrf_token %}
+
+        <div class="form-control">
+            <label for="">Admin key</label>
+            <input type="text" name="admin_key" id="admin_key" placeholder="enter your key provided" required>
+        </div>
+
+        <button type="submit" class="btn btn-secondary btn-full">Submit key</button>
+    </form>
+{% endblock content %}

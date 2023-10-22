@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="plantation-events">
+        <h2 class="plantation-event_heading">Create new Appointment</h2>
+
+        <form action="." method="post">
+            {% csrf_token %}
+
+            {% comment %} {{ form.as_p }} {% endcomment %}
+
+            <div class="form-control">
+                {{ form.title.errors }}
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
+             <br>
+            <div class="form-control">
+                {{ form.date.errors }}
+                {{ form.date.label_tag }}
+                {{ form.date }}
+            </div>
+            <br>
+            <div class="form-control">
+                {{ form.location.errors }}
+                {{ form.location.label_tag }}
+                {{ form.location }}
+            </div>
+            <br>
+            <div class="form-control">
+                {{ form.description.errors }}
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+
+            <br>
+            <input type="submit" value="Request for Appointment" class="btn btn-outline-tertiary">
+        </form>
+    </div>
+{% endblock %}

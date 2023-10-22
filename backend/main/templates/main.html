@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>WELCOME TO PLANTATION MANAGEMENT</h2>
+
+    <div class="plantation-card_wrapper">
+        {% if not services %}
+        <p>All available services will be shown here</p>
+        {% endif %}
+        {% for service in services %}
+            <div class="plantation-card">
+                <div class="plantation-image">image</div>
+                <div class="plantation-info">
+                    <h3>{{ service.title  }}</h3>
+                    <p>{{ service.description}}</p>
+                    <br>
+                    <a href="{% url 'main:service-detail' service.pk %}">Read more</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

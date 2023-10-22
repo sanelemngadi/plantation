@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="plantation-service_heading">{{ service.title }}</h2>
+
+    <p class="plantation-service_description">{{ service.description }}</p>
+
+    <ul class="plantation-cards">
+        {% if not service.products %}
+            <p>There are not products under this service click add product and select this service under services</p>
+        {% endif %}
+
+        <div class="plantation-service_add-product">
+            <a href="{% url 'main:new-product' service.pk %}" class="btn btn-secondary">Add new product</a>
+        </div>
+        <br>
+        
+        {% for product in service.products.all %}
+            <li>
+                <div class="plantation-product_card">
+                    <a href="#">
+                        <div class="plantation-product_image">image</div>
+                    </a>
+                    <div class="plantation-product_info">
+                        <h2 class="plantation-product_name">
+                            {{ product.name }}
+                        </h2>
+
+                        <p class="plantation-product-description">
+                            {{ product.description }}
+                        </p>
+
+                        <p>Price: {{ product.price }}</p>
+
+                        <a href="{% url 'add-to-cart' product.pk 'main:main' %}" class="btn btn-tertiary btn-sm">Add to cart</a>
+                        <a href="{% url 'new-rental' product.pk %}" class="btn btn-outline-tertiary btn-sm">Rent item</a>
+                        <a href="{% url 'main:product-detail' product.pk %}" class="btn btn-link-secondary btn-sm">Read more</a>
+                       
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

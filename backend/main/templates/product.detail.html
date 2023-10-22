@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="plantation-service_heading">{{ product.name }}</h2> 
+
+    <div class="plantation-product_detail">
+        <div class="plantation-img">
+
+        </div>
+        <div class="plantation-details">
+            <h3>Price: {{ product.price }} </h3>
+            <p>description: {{ product.description }}</p>
+            <a href="#" class="plantation-cart_cta">Add to cart</a>
+            <a href="#" class="plantation-cart_cta">Rent item</a>
+        </div>
+    </div>
+    <p class="plantation-service_description">{{ product.description }}</p>
+
+
+    
+    <h2 class="plantation-service_heading">You may also like</h2>
+
+    <ul class="plantation-cards">
+        {% for item in similar %}
+            <li>
+                <div class="plantation-product_card">
+                    <a href="#">
+                        <div class="plantation-product_image">image</div>
+                    </a>
+                    <div class="plantation-product_info">
+                        <h2 class="plantation-product_name">
+                            {{ item.name }}
+                        </h2>
+
+                        <p class="plantation-product-description">
+                            {{ item.description }}
+                        </p>
+
+                        <p>Price: {{ item.price }}</p>
+
+                        <a href="#" class="plantation-cart_cta">Add to cart</a>
+                        <a href="#" class="plantation-cart_cta">Rent item</a>
+                        <a href="{% url 'main:product-detail' item.pk %}" class="plantation-cart_cta">Read more</a>
+                       
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

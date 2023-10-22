@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="plantation-items_wrapper">
+    <h2 class="plantation-items_heading">
+        Recent orders
+    </h2>
+    <br>
+
+    <div class="plantation-table">
+        <table>
+            <tr>
+                <th>Item No.</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Order by</th>
+                <th>Paid?</th>
+            </tr>
+
+            {% comment %} {% for order in orders %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ order.product.name }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.user.username }}</td>
+                    <td class="for-lg">
+                        {% if order.paid %} 
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %} {% endcomment %}
+
+            
+
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% comment %} <div class="plantation-product_card">
+    <a href="#">
+        <div class="plantation-product_image">image</div>
+    </a>
+    <div class="plantation-product_info">
+        <h2 class="plantation-product_name">
+            {{ product.name }}
+        </h2>
+
+        <p class="plantation-product-description">
+            {{ product.description }}
+        </p>
+
+        <p>Price: {{ product.price }}</p>
+
+        <a href="#" class="plantation-cart_cta">Add to cart</a>
+        <a href="#" class="plantation-cart_cta">Rent item</a>
+        <a href="#" class="plantation-cart_cta">Read more</a>
+       
+    </div> {% endcomment %}
+
+
+    <div class="plantation-events">
+        <h2 class="plantation-event_heading">New Rental</h2>
+        <h4>This is a request to rent our item: <b style="font-size: 18px; text-decoration: underline;">{{ product.name }}</b></h4>
+        <br>
+        <hr>
+        <br>
+        <form action="." method="post">
+            {% csrf_token %}
+
+            {% comment %} {{ form.as_p }} {% endcomment %}
+
+            <div class="form-group">
+                <div class="form-control">
+                    {{ form.date_from.errors }}
+                    {{ form.date_from.label_tag }}
+                    {{ form.date_from }}
+                </div>
+
+                <div class="form-control">
+                    {{ form.date_to.errors }}
+                    {{ form.date_to.label_tag }}
+                    {{ form.date_to }}
+                </div>
+            </div>
+            <br>
+            <div class="form-control">
+                {{ form.reason.errors }}
+                {{ form.reason.label_tag }}
+                {{ form.reason }}
+            </div>
+
+            <br>
+            <input type="submit" value="Request for Rental" class="btn btn-tertiary">
+        </form>
+    </div>
+{% endblock %}
