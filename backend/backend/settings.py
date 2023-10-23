@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'URL': config('MYSQL_URL'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'URL': config('POSTGRES_URL'),
         'NAME': config('PGNAME'),
         'USER': config('PGUSER'),
-        'PASSWORD': config('MYSQL_PASSWORD'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
         'HOST': config('PGHOST'),
         'PORT': config('PGPORT')
     }
