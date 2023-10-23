@@ -33,3 +33,6 @@ class PlantationUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+    def get_name(self):
+        return f"{self.first_name} {self.last_name}"

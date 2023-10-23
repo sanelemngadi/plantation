@@ -6,58 +6,57 @@
         Rentend items
     </h2>
 
+    {% if user.is_staff or user.is_superuser %}
+        <p>Unread item(s): ({{ count_unread }} / {{total}}) - not accepted: ({{ count_not_accepted }} / {{ total }})</p>
+    {% endif %}
+
     <div class="plantation-table">
         <table>
             <tr>
                 <th>Item No.</th>
                 <th>Description</th>
-                <th>Rented by</th>
-                <th class="for-lg">Rented from</th>
-                <th class="for-lg">Rented to</th>
-                <th>Returned?</th>
-                <th class="for-lg">Status</th>
+                {% if user.is_staff or user.is_superuser %}
+                    <th>Rented by</th>
+                {% endif %}
+                <th>Rented from</th>
+                <th>Rented to</th>
+                {% if user.is_staff or user.is_superuser %}
+                    <th>Returned?</th>
+                {% endif %}
+                <th>Status</th>
             </tr>
 
-            <tr>
-                <td>1</td>
-                <td>Pest fumigator</td>
-                <td>Sanele Mngadi</td>
-                <td class="for-lg">20/09/2023</td>
-                <td class="for-lg">25/09/2023</td>
-                <td>No</td>
-                <td class="for-lg">Overdue</td>
-            </tr>
-
-            <tr>
-                <td>1</td>
-                <td>Pest fumigator</td>
-                <td>Sanele Mngadi</td>
-                <td class="for-lg">20/09/2023</td>
-                <td class="for-lg">25/09/2023</td>
-                <td>No</td>
-                <td class="for-lg">Overdue</td>
-            </tr>
-
-            <tr>
-                <td>1</td>
-                <td>Pest fumigator</td>
-                <td>Sanele Mngadi</td>
-                <td class="for-lg">20/09/2023</td>
-                <td class="for-lg">25/09/2023</td>
-                <td>No</td>
-                <td class="for-lg">Overdue</td>
-            </tr>
-
-            <tr>
-                <td>1</td>
-                <td>Pest fumigator</td>
-                <td>Sanele Mngadi</td>
-                <td class="for-lg">20/09/2023</td>
-                <td class="for-lg">25/09/2023</td>
-                <td>No</td>
-                <td class="for-lg">Overdue</td>
-            </tr>
+            {% if rentals and user.is_authenticated %}
+                {% for rental in rentals %}
+                    {% if user.is_staff or user.is_superuser %}
+                    <tr>
+                        <td class="{% if not rental.viewed %}unread{% endif %}">{{ forloop.counter }} <a href="{% url 'rental-detail' rental.pk %}" style="color: blue; text-decoration: underline;">edit</a></td>
+                        <td class="{% if not rental.viewed %}unread{% endif %}">{{ rental.product.name }}</td>
+                        <td class="{% if not rental.viewed %}unread{% endif %}">{{ rental.user.get_name }}</td>
+                        <td class="{% if not rental.viewed %}unread{% endif %}">{{ rental.date_from }}</td>
+                        <td class="{% if not rental.viewed %}unread{% endif %}">{{ rental.date_to }}</td>
+                        <td class="{% if not rental.viewed %}unread{% endif %}"> {% if rental.returned %} Yes {% else %} No {% endif %}</td>
+                        <td class="{% if not rental.viewed %}unread{% endif %}">{{ rental.status }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td>{{ forloop.counter }} <a href="{% url 'rental-detail' rental.pk %}" style="color: blue; text-decoration: underline;">edit</a></td>
+                        <td>{{ rental.product.name }}</td>
+                        <td>{{ rental.date_from }}</td>
+                        <td>{{ rental.date_to }}</td>
+                        <td>{{ rental.status }}</td>
+                    </tr>
+                    {% endif %}             
+                {% endfor %}
+                
+            {% else %}
+            <p>We do not have any rented item</p>
+            <br>
+            {% endif %}
         </table>
+
+
+       
     </div>
 </div>
 {% endblock %}

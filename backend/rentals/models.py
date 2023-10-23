@@ -19,6 +19,15 @@ class PlantationRentalModel(models.Model):
     date_to = models.DateField()
     returned = models.BooleanField(default=False)
     status = models.CharField(max_length=255, choices=STATUS_CHOICES)
-    paid = models.BooleanField(default=False)
-    reason = models.CharField(max_length=255 ,default="To study")
+    reason = models.CharField(max_length=255)
     collected = models.BooleanField(default=False)
+    paid = models.BooleanField(default=False)
+    accepted = models.BooleanField(default=False)
+    verified = models.BooleanField(default=False)
+    viewed = models.BooleanField(default=False)
+    id_image = models.ImageField(upload_to='images/',  blank=True, null=True)
+    proof_of_residence = models.ImageField(upload_to='images/', blank=True, null=True)
+    qr_tag = models.ImageField(upload_to='images/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user.first_name} rented {self.product.name}"

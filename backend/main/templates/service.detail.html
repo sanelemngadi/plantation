@@ -32,8 +32,10 @@
 
                         <p>Price: {{ product.price }}</p>
 
-                        <a href="{% url 'add-to-cart' product.pk 'main:main' %}" class="btn btn-tertiary btn-sm">Add to cart</a>
-                        <a href="{% url 'new-rental' product.pk %}" class="btn btn-outline-tertiary btn-sm">Rent item</a>
+                        {% if not user.is_staff and not user.is_superuser %}
+                            <a href="{% url 'add-to-cart' product.pk 'main:main' %}" class="btn btn-tertiary btn-sm">Add to cart</a>
+                            <a href="{% url 'new-rental' product.pk %}" class="btn btn-outline-tertiary btn-sm">Rent item</a>
+                        {% endif %}
                         <a href="{% url 'main:product-detail' product.pk %}" class="btn btn-link-secondary btn-sm">Read more</a>
                        
                     </div>

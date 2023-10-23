@@ -17,6 +17,8 @@
     <p class="plantation-service_description">{{ product.description }}</p>
 
 
+
+    {% if similar %}
     
     <h2 class="plantation-service_heading">You may also like</h2>
 
@@ -47,4 +49,6 @@
             </li>
         {% endfor %}
     </ul>
+
+    {% endif %}
 {% endblock %}
