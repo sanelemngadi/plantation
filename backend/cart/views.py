@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from cart.models import PlantationCartModel, PlantationProductDetails
-from main.models import PlantationProduct
+from products.models import PlantationProduct
 from orders.forms import PlantationAddressForm, PlantationCardInformationForm, PlantationOrderForm
 
 # Create your views here.
@@ -103,9 +103,15 @@ def checkout_view(request):
             order.card_information = card
             order.paid = False
             order.save() # redict to invoice 
-            # order.products.set(cart.items.all())
-            order.add_products(cart.items.all())
-            return redirect("invoice")
+            order.products.set(cart.items.all())
+
+            cart.delete()
+
+            # for item in cart.items.all():
+            #     order.products.add(item) ## then clear cart after successful payment
+
+            # order.add_products(cart.items.all())
+            return redirect("item-invoice", order.pk)
 
     #"user", "paid", "products", "quantity", "address", "card_information"
     

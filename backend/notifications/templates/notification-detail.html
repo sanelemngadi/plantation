@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>{{ notification.event.title | title }}</h2>
+<p>By: {{ notification.event.user.first_name | title }} {{ notification.event.user.last_name | title }}</p>
+{% comment %} <br> {% endcomment %}
+<p>On: {{ notification.event.date }}</p>
+<p>At: {{ notification.event.location }}</p>
+
+<br>
+<b>Description: </b>
+<p>{{ notification.event.description }}</p>
+
+<br>
+<hr>
+<br>
+{% if notification.rsvped %}
+    <div>
+        {% comment %} image {% endcomment %}
+        {% if notification.qr_image %}
+        <img src="{{ notification.qr_image.url }}" width="200" alt="image">
+        <br>
+        <a href="{% url 'download_pq' notification.pk %}" class="btn btn-outline-secondary">View QR code</a>
+
+        {% endif %}
+        {% comment %} <img src="{% static 'images/qr_code.png' %}" width="200" alt="image"> {% endcomment %}
+    </div>
+    {% else %}
+
+    
+    <form action="{% url 'notification-order' notification.pk %}" method="post" style="max-width: 500px; margin: 2rem 0; border: 1px solid gray; border-radius: .5rem; padding: 2rem;">
+        {% csrf_token %}
+        
+        <div class="form-check">
+            <label for="vip">
+                VIP: R {{ notification.event.general_price }}
+        
+            </label>
+            <input type="radio" name="ticket" value="vip" id="vip" checked>
+        </div>
+        <div class="form-check">
+            <label for="general">
+                General:  {{ notification.event.vip_price }}
+        
+            </label>
+            <input type="radio" name="ticket" value="general" id="general">
+        </div>
+        <br>
+    
+        <button type="submit" class="btn btn-secondary btn-full">RSVP and Buy Ticket</button>
+        {% comment %} <a href="{% url 'download_pq' notification.pk %}" class="btn btn-secondary btn-full">RSVP and Buy Ticket</a> {% endcomment %}
+    </form>
+
+    
+
+{% endif %}
+
+{% endblock content %}

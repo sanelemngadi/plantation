@@ -1,5 +1,5 @@
 from django.db import models
-from main.models import PlantationProduct
+from products.models import PlantationProduct
 # from django.contrib.auth.models import User
 from user.models import PlantationUser
 

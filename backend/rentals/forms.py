@@ -6,7 +6,7 @@ class PlantationRentalForm(forms.ModelForm):
         model = PlantationRentalModel
         fields = "__all__"
 
-        exclude = ("user", "product", "status", "returned", "collected", "paid")
+        exclude = ("user", "product", "status", "returned", "collected", "paid", "id_image","proof_of_residence", "qr_tag")
 
         widgets = {
             "date_from": forms.DateInput(attrs={"type": "date"}),

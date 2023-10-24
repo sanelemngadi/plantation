@@ -25,11 +25,17 @@ urlpatterns = [
 
     path('appointments/', include("appointments.urls")),
     path('events/', include("events.urls")),
+    path('products/', include("products.urls")),
+    path('services/', include("services.urls")),
     path('rentals/', include("rentals.urls")),
     path('orders/', include("orders.urls")),
+    path('inventory/', include("inventory.urls")),
+    path('suppliers/', include("suppliers.urls")),
     path('users/', include("user.urls")),
     path('notifications/', include("notifications.urls")),
     path('cart/', include("cart.urls")),
+    path('payments/', include("payments.urls")),
+    path('paypal/', include("paypal.standard.ipn.urls")),
 ]
 
 if settings.DEBUG:

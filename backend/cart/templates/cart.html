@@ -17,11 +17,22 @@
 
             
             {% for product in  cart.items.all %}
-                <div class="plantation-cart_card">
+                <div class="plantation-cart_card" style="display: flex;">
                     <div class="plantation-cart_info">
-                        <h2>{{ product.product.name }}</h2>
-                        <p>Price: <b>{{ product.product.price }}</b></p>
-                        <p>Items in stock: {{ product.product.stock }}</p>
+                       <div style="display: flex;">
+                            <div class="plantation-product_image" style="max-width: 120px; width: 100%; height: 100%; overflow: hidden; max-height: 100%;">
+                                {% if product.product.image.url %}
+                                    <img src="{{ product.product.image.url }}" width="450" style="width: 100%; height: 100%; object-fit: cover;" alt="Image">
+                                {% endif %}
+                            </div>
+
+
+                            <div>
+                                <h2>{{ product.product.name }}</h2>
+                                <p>Price: <b>{{ product.product.price }}</b></p>
+                                <p>Items in stock: {{ product.product.stock }}</p>
+                            </div>
+                       </div>
                         
                         <div class="plantation-cart_cta">
                             <a href="{% url 'remove-cart-item' product.product.pk %}" class="btn btn-primary">Remove</a>

@@ -1,0 +1,38 @@
+<h3>Stock storage</h3>
+{% comment %} {% load custom_filters %} {% endcomment %}
+
+
+    {% if not products %}
+    <p>There are no products to manage please create products</p>
+    {% endif %}
+    
+    {% if user.is_staff or user.is_superuser %}
+    <div class="plantation-items_wrapper">
+        {% comment %} <h2 class="plantation-items_heading">
+            Recent orders
+        </h2> <br> {% endcomment %}
+        <div class="plantation-table" style="width: 100%;">
+            <table>
+                <tr>
+                    <th>Item No.</th> <th>Name</th>
+                    <th>Service / category</th>
+                    <th>Quantity</th>
+                    <th>Row</th>
+                    <th>Shelf</th>
+                </tr>
+                
+                {% for product in products %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ product.name }}</td>
+                        <td><p style="max-height: 18px; overflow: hidden; max-width: 256px;">{{ product.service.title }}</p></td>
+                        <td>{{ product.stock }} </td>
+                        <td>{{ product.row_number }}</td>
+                        <td>{{ product.shelf_number }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+         </div>
+
+        {% endif %}

@@ -4,10 +4,10 @@
     <div class="plantation-events">
         <h2 class="plantation-event_heading">Notifications</h2>
 
-        {% if events %}
+        {% if notifications %}
             <div class="plantation-event_wrapper">
-                {% for event in events %}
-                    <a href="#" class="plantation-card_link">
+                {% for notification in notifications %}
+                    <a href="{% url 'notification' notification.pk %}" class="plantation-card_link" style="border: 1px solid red; border-radius: 0.5rem;">
                         <div class="plantation-events_card">
                             <div class="plantation-image">
                                 <div class="plantation-calender">
@@ -16,11 +16,11 @@
                                 </div>
                             </div>
                             <div class="plantation-info">
-                                <h3 class="plantation-event_title">{{ event.title }}</h3>
-                                <p class="plantation-event_host">Host: {{ event.host.first_name }} {{ event.host.last_name }}</p>
-                                <p class="plantation-event_time">Time: {{ event.time }}</p>
-                                <p class="plantation-event_duration">Duration: {{ event.duration_mins }}mins</p>
-                                <p class="plantation-event_location">Place: {{ event.location }}</p>
+                                <h3 class="plantation-event_title">{{ notification.event.title }}</h3>
+                                <p class="plantation-event_host">Host: {{ notification.event.host.first_name }} {{ event.host.last_name }}</p>
+                                <p class="plantation-event_time">Time: {{ notification.event.time }}</p>
+                                <p class="plantation-event_duration">Duration: {{ notification.event.duration_mins }}mins</p>
+                                <p class="plantation-event_location">Place: {{ notification.event.location }}</p>
                             </div>
                         </div>
                     </a>
@@ -30,7 +30,7 @@
             {% if user.is_staff or user.is_superuser %}
             <p>No events click add events in side panel to add more events</p>
             {% else %}
-            <p>Pending events will be posted here</p>
+            <p>Pending notification will be posted here</p>
             {% endif %}
         {% endif %}
     </div>

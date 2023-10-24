@@ -6,7 +6,7 @@ class PlantationOrderForm(forms.ModelForm):
         model = PlantationOrderModel
         fields = "__all__"
 
-        exclude = ("user", "paid", "products", "quantity", "address", "card_information")
+        exclude = ("user", "paid", "products", "quantity", "address", "card_information", "order_number")
 
 
 class PlantationCardInformationForm(forms.ModelForm):

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ event.title | title }}</h2>
+<p>By: {{ event.user.first_name | title }} {{ event.user.last_name | title }}</p>
+{% comment %} <br> {% endcomment %}
+<p>On: {{ event.date }}</p>
+<p>At: {{ event.location }}</p>
+
+<br>
+<b>Description: </b>
+<p>{{ event.description }}</p>
+
+<br>
+<hr>
+<br>
+<form action="." method="post" style="max-width: 500px; margin: 2rem 0; border: 1px solid gray; border-radius: .5rem; padding: 2rem;">
+    {% csrf_token %}
+    
+    <h2>Attendance Register</h2>
+
+    {% for notification in notifications %}
+        <div class="form-check" style="justify-content: space-between;">
+            <label for="vip"> {{ notification.user.get_name }}</label>
+            <input type="checkbox" name="{{ notification.pk }}" id="vip" {% if notification.attended %}checked{% endif %}>
+        </div>
+    {% endfor %}
+
+    <br>
+    <button class="btn btn-secondary btn-full">Update Attendance Register</button>
+</form>
+
+{% endblock content %}

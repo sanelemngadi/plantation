@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Services</h2>
+
+    <br>
+    {% if user.is_staff or user.is_superuser %}
+        <div class="plantation-service_add-product">
+            <a href="{% url 'product-create' service.pk %}" class="btn btn-secondary">Add new product</a>
+            <a href="{% url 'product-create' service.pk %}" class="btn btn-secondary">Delete All Products</a>
+            <a href="{% url 'product-create' service.pk %}" class="btn btn-secondary">Delete Service (and products)</a>
+        </div>
+    {% endif %}
+
+    <ul class="plantation-cards">
+        {% if not service.products %}
+            <p>There are not products under this service click add product and select this service under services</p>
+        {% endif %}
+
+        <div style="min-height: 256px;">
+            <div class="plantation-product_image" style="max-width: 250px; width: 100%; height: 100%; overflow: hidden; max-height: 100%;">
+                {% if service.image.url %}
+                    <img src="{{ service.image.url }}" width="450" style="width: 100%; height: 100%; object-fit: cover;" alt="Image">
+                {% endif %}
+            </div>
+        </div>
+        <div style="overflow: auto;">
+            <h2 class="plantation-service_heading">{{ service.title }}</h2>
+            <p class="plantation-service_description">{{ service.description }}</p>   
+
+        </div>
+        
+        {% for product in service.products.all %}
+            <li>
+                <div class="plantation-product_card">
+                    <a href="#">
+                        <div class="plantation-product_image" style="max-width: 100px; overflow: hidden; max-height: 100px;">
+                            <img src="{{ product.image.url }}" width="100px" style="width: 100%; object-fit: cover;" alt="Image">
+                        </div>
+                    </a>
+                    <div class="plantation-product_info">
+                        <h2 class="plantation-product_name">
+                            {{ product.name }}
+                        </h2>
+
+                        <p class="plantation-product-description">
+                            {{ product.description }}
+                        </p>
+
+                        <p>Price: {{ product.price }}</p>
+
+                        {% if not user.is_staff and not user.is_superuser %}
+                            <a href="{% url 'add-to-cart' product.pk 'main:main' %}" class="btn btn-tertiary btn-sm">Add to cart</a>
+                            <a href="{% url 'new-rental' product.pk %}" class="btn btn-outline-tertiary btn-sm">Rent item</a>
+                        {% endif %}
+                        <a href="{% url 'product-detail' product.pk %}" class="btn btn-link-secondary btn-sm">Read more</a>
+                       
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

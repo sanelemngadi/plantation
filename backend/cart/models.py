@@ -1,6 +1,6 @@
 from django.db import models
 from user.models import PlantationUser
-from main.models import PlantationProduct
+from products.models import PlantationProduct
 
 # Create your models here.
 
@@ -15,6 +15,9 @@ class PlantationProductDetails(models.Model):
     def define(self, number: int):
         self.quantity = number
         self.save()
+
+    def get_total_price(self):
+        return self.quantity * self.product.price
 
 
 class PlantationCartModel(models.Model):

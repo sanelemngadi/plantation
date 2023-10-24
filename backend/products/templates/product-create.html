@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="plantation-events">
+        <h2 class="plantation-event_heading">Create new Product:</h2>
+        <h2>Service: {{ service.title }}</h2>
+
+        <form action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% comment %} <div class="form-control">
+                {{ form.service.errors }}
+                {{ form.service.label_tag }}
+                {{ form.service }}
+            </div> {% endcomment %}
+
+            <div class="form-control">
+                {{ form.name.errors }}
+                {{ form.name.label_tag }}
+                {{ form.name }}
+            </div>
+
+            <div class="form-group">
+                <div class="form-control">
+                    {{ form.price.errors }}
+                    {{ form.price.label_tag }}
+                    {{ form.price }}
+                </div>
+    
+                <div class="form-control">
+                    {{ form.rent_price.errors }}
+                    {{ form.rent_price.label_tag }}
+                    {{ form.rent_price }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-control">
+                    {{ form.row_number.errors }}
+                    {{ form.row_number.label_tag }}
+                    {{ form.row_number }}
+                </div>
+    
+                <div class="form-control">
+                    {{ form.shelf_number.errors }}
+                    {{ form.shelf_number.label_tag }}
+                    {{ form.shelf_number }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-control">
+                    {{ form.stock.errors }}
+                    {{ form.stock.label_tag }}
+                    {{ form.stock }}
+                </div>
+    
+                <div class="form-control">
+                    {{ form.discount_percentage.errors }}
+                    {{ form.discount_percentage.label_tag }}
+                    {{ form.discount_percentage }}
+                </div>
+    
+                <div class="form-control">
+                    {{ form.tax_percentage.errors }}
+                    {{ form.tax_percentage.label_tag }}
+                    {{ form.tax_percentage }}
+                </div>
+            </div>
+
+            <div class="form-control">
+                {{ form.description.errors }}
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+
+            <div class="form-check">
+                {{ form.in_stock.errors }}
+                {{ form.in_stock.label_tag }}
+                {{ form.in_stock }}
+            </div>
+
+            <div class="form-control">
+                {{ form.image.errors }}
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+
+            <div class="form-control">
+                {{ form.variations.errors }}
+                {{ form.variations.label_tag }}
+                {{ form.variations }}
+            </div>
+
+            <input type="submit" value="Submit" class="btn btn-tertiary btn-full">
+        </form>
+    </div>
+{% endblock %}

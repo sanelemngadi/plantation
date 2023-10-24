@@ -47,8 +47,15 @@ INSTALLED_APPS = [
     'rentals',
     'user',
     'notifications',
+    'products',
+    'inventory',
+    'suppliers',
+    'services',
     'cart',
+    'payments',
     # 'payfast',
+
+    'paypal.standard.ipn'
 ]
 
 MIDDLEWARE = [
@@ -164,3 +171,7 @@ AUTH_USER_MODEL = "user.PlantationUser"
 # PAYFAST_RETURN_URL = 'https://yourwebsite.com/payfast/return/'
 # PAYFAST_CANCEL_URL = 'https://yourwebsite.com/payfast/cancel/'
 # PAYFAST_NOTIFY_URL = 'https://yourwebsite.com/payfast/notify/'
+
+
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = "sandbox@gmail.com"

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Warehouse Shelves</h3>
+
+<form action="." method="post">
+
+<br><br>
+
+
+<form action="." method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="form-control">
+            {{ form.row.errors }}
+            {{ form.row.label_tag }}
+            {{ form.row }}
+        </div>
+        <div class="form-control">
+            {{ form.shelf.errors }}
+            {{ form.shelf.label_tag }}
+            {{ form.shelf }}
+        </div>
+    </div>
+    <div class="form-control" style="justify-content: flex-end;">
+        <input type="submit" class="btn btn-outline-tertiary" style="margin-bottom: 0; justify-content: center;" value="Add Shelf">
+    </div>
+</form>
+
+{% endblock content %}

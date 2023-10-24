@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
@@ -89,3 +89,7 @@ def download_invoice_view(request):
     #     return HttpResponse('We had some errors <pre>' + html + '</pre>')
 
     return response
+
+def page_invoice_view(request, pk):
+    order = get_object_or_404(PlantationOrderModel, pk=pk)
+    return render(request, "invoice-home.html", { "order": order })

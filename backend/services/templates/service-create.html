@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="plantation-events">
+        <h2 class="plantation-event_heading">Create new Service</h2>
+
+        <form action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-control">
+                {{ form.title.errors }}
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
+            <div class="form-control">
+                {{ form.image.errors }}
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+
+            <div class="form-control">
+                {{ form.description.errors }}
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+
+            <input type="submit" value="Submit" class="btn btn-tertiary">
+        </form>
+    </div>
+{% endblock %}

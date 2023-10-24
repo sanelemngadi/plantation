@@ -17,12 +17,12 @@
                 <th>Paid?</th>
             </tr>
 
-            {% comment %} {% for order in orders %}
+            {% for order in orders %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ order.product.name }}</td>
+                    <td><a href="{% url 'item-invoice' order.pk %}">view invoice</a></td>
                     <td>{{ order.quantity }}</td>
-                    <td>{{ order.user.username }}</td>
+                    <td>{{ order.user.get_name }}</td>
                     <td class="for-lg">
                         {% if order.paid %} 
                         Yes
@@ -31,7 +31,7 @@
                         {% endif %}
                     </td>
                 </tr>
-            {% endfor %} {% endcomment %}
+            {% endfor %}
 
             
 

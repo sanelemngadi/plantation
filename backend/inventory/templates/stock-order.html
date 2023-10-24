@@ -1,0 +1,79 @@
+<h3>Stocking</h3>
+
+<form action="." method="post">
+    {% csrf_token %}
+
+    {% comment %} {{ form.as_p }} {% endcomment %}
+
+    <div class="form-group">
+        <div class="form-control">
+            {{ form.product.errors }}
+            {{ form.product.label_tag }}
+            {{ form.product }}
+        </div>
+        <div class="form-control">
+            {{ form.supplier.errors }}
+            {{ form.supplier.label_tag }}
+            {{ form.supplier }}
+        </div>
+        <div class="form-control">
+            {{ form.items_ordered.errors }}
+            {{ form.items_ordered.label_tag }}
+            {{ form.items_ordered }}
+        </div>
+        <div class="form-control">
+            {{ form.items_recieved.errors }}
+            {{ form.items_recieved.label_tag }}
+            {{ form.items_recieved }}
+        </div>
+        <div class="form-control">
+            {{ form.items_broken.errors }}
+            {{ form.items_broken.label_tag }}
+            {{ form.items_broken }}
+        </div>
+        <div class="form-control">
+            {{ form.item_price.errors }}
+            {{ form.item_price.label_tag }}
+            {{ form.item_price }}
+        </div>
+        <div class="form-control" style="justify-content: flex-end;">
+            <input type="submit" class="btn btn-outline-tertiary" style="margin-bottom: 0; justify-content: center;" value="Add Stocking">
+        </div>
+    </div>
+</form>
+
+ 
+{% if user.is_staff or user.is_superuser %}
+<div class="plantation-items_wrapper">
+    {% comment %} <h2 class="plantation-items_heading">
+        Recent orders
+    </h2> <br> {% endcomment %}
+    <div class="plantation-table" style="width: 100%;">
+        <table>
+            <tr>
+                <th>Product</th> 
+                <th>Supplier</th>
+                <th>items ordered</th>
+                <th>items recieved</th>
+                <th>items broken</th>
+                <th>item price</th>
+                <th></th>
+            </tr>
+            
+            {% for info in infos %}
+                <tr>
+                    <td>{{ info.product.name }}</td>
+                    <td>{{ info.supplier.company_name }}</td>
+                    <td><p style="max-height: 18px; overflow: hidden; max-width: 256px;">{{ product.service.title }}</p></td>
+                    <td>{{ info.items_ordered }} </td>
+                    <td>{{ info.items_recieved }} </td>
+                    <td>{{ info.items_broken }} </td>
+                    <td>{{ info.item_price }} </td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+     </div>
+
+    {% endif %}

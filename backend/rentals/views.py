@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from rentals.forms import PlantationRentalForm
 from rentals.models import PlantationRentalModel
 from django.contrib.auth.decorators import login_required, user_passes_test
-from main.models import PlantationProduct
+from products.models import PlantationProduct
+from datetime import date
 
 def is_admin(user):
     return user.is_staff or user.is_superuser
@@ -56,6 +57,20 @@ def rental_create_view(request, pk):
             instance = form.save(False)
             instance.product = rented_product
             instance.user = request.user
+
+            if instance.date_from <= date.today():
+                print("this have to be after today")
+                # raise ValueError("invalid items")
+                form.add_error("date_from","Date from must always bigger than today")
+                return render(request, "create-rental.html", { "form": form, "product": rented_product })
+
+            if instance.date_from > instance.date_to:
+                form.add_error("date_from","Date to must always bigger than date from")
+                return render(request, "create-rental.html", { "form": form, "product": rented_product })
+
+            if instance.date_from == instance.date_to:
+                form.add_error("date_from","The item cannot be borrowed and returned same day")
+                return render(request, "create-rental.html", { "form": form, "product": rented_product })
             instance.save()
 
             return redirect("confirm-rental", pk = instance.pk)
