@@ -1,6 +1,4 @@
 from django.db import models
-# from django.contrib.auth.models import User
-from products.models import PlantationProduct
 from user.models import PlantationUser
 from cart.models import PlantationProductDetails
 

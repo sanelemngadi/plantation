@@ -10,6 +10,7 @@
     --color-secondary: #5E6E82;
     --color-tertiary: #2C7BE5;
     --color-danger: red;
+    --canvas-shadow: 0px 4px 8px rgba(0,0,0,0.25)
 }
 
 body {
@@ -85,6 +86,7 @@ a {
     padding: 1rem;
     overflow-x: hidden;
     overflow-y: auto;
+    padding-bottom: 4rem;
 }
 
 .plantation-options_item {
@@ -314,4 +316,36 @@ a {
     }
 }
 
+.invoice-container {
+    background-color: #EDF2F9; 
+    
+    width: 800px; 
+    border: 1px solid var(--color-secondary); 
+    margin: 2rem auto; 
+    padding: 1rem; 
+    background-color: #fff;
+    padding-bottom: 3rem;
+    border-radius: .5rem;
+    box-shadow: var(--canvas-shadow);
+
+    th, tr {
+        padding: 1rem;
+        text-align: left;
+    }
+
+    td {
+        padding: .5rem 1rem;
+        text-align: left;
+    }
+
+    @media screen and (min-width: 992px) {
+        .container {
+            max-width: 70vw; 
+        }
+    }
+}
+
 // #2C7BE5
+
+
+@import "inventory";
